@@ -1,18 +1,11 @@
 {
   "daftarBuku": [
     {
-      "judul": "Kisah Nabi",
-      "deskripsi": "Baca aja nanti juga tau",
-      "tahunTerbit": "2022-12-10",
-      "pengarang": "umar bin khatab",
-      "id": 2
-    },
-    {
-      "judul": "Istiqlal dan Katedral",
-      "deskripsi": "beda agama",
-      "tahunTerbit": "2022-12-07",
-      "pengarang": "mely",
-      "id": 5
+      "judul": "a",
+      "deskripsi": "aaaaaaaaaaaaa",
+      "tahunTerbit": "2022-12-22",
+      "pengarang": "aaaaaaaaaaaaaa",
+      "id": 1
     }
   ]
 }

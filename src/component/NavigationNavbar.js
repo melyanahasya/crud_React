@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-
+import Swal from "sweetalert2";
 
 export default function NavigationNavbar() {
   const [show, setShow] = useState(false);
@@ -17,8 +17,8 @@ export default function NavigationNavbar() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const addUser = async (e) => {
-    e.preventDefault();
+  const addUser = async (e) => { // untuk menambahkan
+    e.preventDefault(); // melakukan reload yg hanya dalam satu file
 
     const data = {
       judul: judul,
@@ -29,6 +29,11 @@ export default function NavigationNavbar() {
 
     await axios
       .post("http://localhost:8000/daftarBuku", data)
+      Swal.fire(
+        'Good job!',
+        'You clicked the button!',
+        'success'
+      )
       .then(() => {
         window.location.reload();
       })

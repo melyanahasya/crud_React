@@ -1,14 +1,16 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import "../style/home.css";
+import "../style/home.css"; // mengimport file css
+import Swal from "sweetalert2";
 
 export default function Table() {
-    const [buku, setBuku] = useState([]); 
+    const [buku, setBuku] = useState([]); // State berfungsi untuk menyimpan data sementara
     
+
     const getAll = () => {
-        axios
-        .get("http://localhost:8000/daftarBuku")
-        .then((res) => {
+        axios // axios berfungsi untuk request data melalui http
+        .get("http://localhost:8000/daftarBuku") // mengambil data dari link tersebut
+        .then((res) => {  
             setBuku(res.data); 
         }).catch((error) => {
             alert("terjadi kesalahan" + error);
@@ -16,14 +18,29 @@ export default function Table() {
     };
 
     const deleteUser = async (id) => {
-        axios.delete("http://localhost:8000/daftarBuku/" + id);
-        alert("user berhasil di hapus");
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios.delete("http://localhost:8000/daftarBuku/" + id);
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+        }
+      })
         getAll();
-        window.location.reload();
     };
 
     useEffect(() => {
-        getAll();  
+        getAll(); // mengambil dari const getAll 
       }, []);
     
 
@@ -42,7 +59,7 @@ export default function Table() {
             </tr>
           </thead>
           <tbody>
-            {buku.map((book, index) => {
+            {buku.map((book, index) => { //map digunakan untuk proses looping
               return (
                 <tr key={book.id}>
                   <td>{index + 1}</td>

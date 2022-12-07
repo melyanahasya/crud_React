@@ -2,10 +2,11 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { InputGroup, Form } from "react-bootstrap";
 import { useHistory, useParams } from "react-router-dom";
-import "../style/edit.css";
+import "../style/edit.css"; // memanggil file css
+import Swal from "sweetalert2";
 
 function Edit() {
-    const param = useParams();
+    const param = useParams(); // mengambil nilai parameter yg ada di URL browser
     const [judul, setJudul] = useState("");
     const [deskripsi, setDeskripsi] = useState("");
     const [tahunTerbit, setTahunTerbit] = useState("");
@@ -29,8 +30,7 @@ function Edit() {
     }, []);
 
     const submitActionHandler = async (event) => {
-        event.preventDefault();
-
+        event.preventDefault(); // untuk melakukan reload (hanya dalam 1 file saja)
         await axios
         .put("http://localhost:8000/daftarBuku/" + param.id, {
          judul : judul,
@@ -38,10 +38,13 @@ function Edit() {
          tahunTerbit : tahunTerbit,
          pengarang : pengarang
         })
+        Swal.fire(
+          'Anda yakin mengedit?',
+          'nice'
+        )
         .then(() => {
-            alert("berhasil mengubah data user")
             history.push("/");
-            window.location.reload();
+            window.location.reload(); // melakukan reload
         })
         .catch((error) => {
             alert("Terjadi kesalahan" + error);
@@ -51,7 +54,7 @@ function Edit() {
   return (
     <div className="edit mx-5">
         <div className="container my-5">
-            <Form onSubmit={submitActionHandler}>
+            <Form onSubmit={submitActionHandler}> 
              <div className="name mb-3">
                 <Form.Label>
                     <strong>Judul</strong>
@@ -95,7 +98,8 @@ function Edit() {
              </div>
 
              <div className='d-flex justify-content-end align-items-center mt-2'>
-                <button className="buton btn" type="submit">Save</button>
+              {/* button untuk meng submit */}
+                <button className="buton btn" type="submit">Save</button>   
              </div>
             </Form>
 
