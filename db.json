@@ -1,11 +1,25 @@
 {
+  "users": [
+    {
+      "id": 1,
+      "username": "Mey",
+      "password": "comel"
+    }
+  ],
   "daftarBuku": [
     {
-      "judul": "a",
-      "deskripsi": "aaaaaaaaaaaaa",
-      "tahunTerbit": "2022-12-22",
-      "pengarang": "aaaaaaaaaaaaaa",
-      "id": 1
+      "judul": "Bicara Itu Ada Seninya",
+      "deskripsi": "Baca kuy",
+      "tahunTerbit": "2022-12-14",
+      "pengarang": "Oh Su Young",
+      "id": 2
+    },
+    {
+      "judul": "how to fight",
+      "deskripsi": "adventure action",
+      "tahunTerbit": "2022-12-23",
+      "pengarang": "jii sung",
+      "id": 3
     }
   ]
 }

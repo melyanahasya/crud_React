@@ -34,6 +34,7 @@ export default function Table() {
             'Your file has been deleted.',
             'success'
           )
+          window.location.reload();
         }
       })
         getAll();
@@ -55,7 +56,7 @@ export default function Table() {
               <th>Deskripsi</th>
               <th>Tahun terbit</th>
               <th>Pengarang</th>
-              <th>Action</th>
+              {localStorage.getItem("id") !== null ? <th>Action</th> : <></>} 
             </tr>
           </thead>
           <tbody>
@@ -67,17 +68,21 @@ export default function Table() {
                   <td>{book.deskripsi}</td>
                   <td>{book.tahunTerbit}</td>
                   <td>{book.pengarang}</td>
+                  {localStorage.getItem("id") !== null ? (
                   <td className="action">
                     <a href={"/edit/" + book.id}>
-                    <button variant="warning"  style={{backgroundColor:"orange", border:"none", color: "white"}} className="mx-1">edit</button> 
+                    <button variant="warning"  style={{backgroundColor:"#8EC3B0", border:"none", color: "white"}} className="mx-1">edit</button> 
                     </a>||
-                    <button variant="danger" style={{backgroundColor:"red", border:"none", color: "white"}}
+                    <button variant="danger" style={{backgroundColor:"#FC3C3C", border:"none", color: "white"}}
                       className="mx-1"
                       onClick={() => deleteUser(book.id)}
                     >
                       hapus
                     </button>
                   </td>
+                  ) : ( 
+                    <></>
+                  )}
                 </tr>
               );
             })}
